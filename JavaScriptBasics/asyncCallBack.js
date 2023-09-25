@@ -28,25 +28,18 @@ function getUserData(callback) {
   }, 1000);
 }
 
-function displayData(callback) {
+function displayData() {
   setTimeout(() => {
     console.log("User Data Displayed");
-    callback();
   }, 500);
 }
 
 // Callback hell
 register(() => {
-  console.log("first");
   emailSend(() => {
-    console.log("second");
     login(() => {
-      console.log("Third");
       getUserData(() => {
-        console.log("forth");
-        displayData(function () {
-          console.log("fifth");
-        });
+        displayData();
       });
     });
   });
