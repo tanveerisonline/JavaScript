@@ -11,7 +11,7 @@ setTimeout(function () {
   console.log("Hi i am from setTimeout"); // Third Execution
 }, 3000);
 console.log("first"); // Second Execution
-
+// This code runs when call stack is free their is no other execution happening
 // Example 2
 console.log("first");
 
