@@ -75,4 +75,4 @@ let work = (job) => {
   return job;
 };
 const myWork = work("developer");
-console.log(myWork);~
+console.log(myWork);
