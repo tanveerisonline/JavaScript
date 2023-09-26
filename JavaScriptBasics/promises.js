@@ -41,13 +41,21 @@ function getUserData() {
 function displayData() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
+      return reject("can't display user data");
       console.log("User Data Displayed");
-      resolve();
+      reject();
     }, 500);
   });
 }
 
-register().then(emailSend).then(login).then(getUserData).then(displayData);
+register()
+  .then(emailSend)
+  .then(login)
+  .then(getUserData)
+  .then(displayData)
+  .catch((err) => {
+    console.log("error: ", err);
+  });
 console.log("Application Loaded");
 // Promise with Asynchronous old way
 // Callback hell
