@@ -3,7 +3,7 @@ function register() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log("Registration Done...");
-      resolve();
+      resolve("passed");
     }, 3000);
   });
 }
@@ -21,6 +21,7 @@ function login() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log("Logged In");
+      //   return reject("Wrong password");
       resolve();
     }, 1000);
   });
@@ -38,19 +39,67 @@ function getUserData() {
 function displayData() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      return reject("can't display user data");
       console.log("User Data Displayed");
-      reject();
+      resolve();
     }, 500);
   });
 }
 
-register()
-  .then(emailSend)
-  .then(login)
-  .then(getUserData)
-  .then(displayData)
+// call back function with DOT THEN
+// register()
+//   .then(emailSend)
+//   .then(login)
+//   .then(getUserData)
+//   .then(displayData)
+//   .catch((err) => {
+//     console.log("error: ", err);
+//   });
+
+// Callback Function with Async and Await
+// async function authenticate() {
+//   await register();
+//   await emailSend();
+//await login(); //.catch((err) => {
+//console.log(err);
+//});
+//   await getUserData();
+//   await displayData();
+// }
+
+// Async Await
+// async function authenticate() {
+//   try {
+//     await register();
+//     await emailSend();
+//     await login();
+//     await getUserData();
+//     await displayData();
+//   } catch (err) {
+//     console.log(err);
+//     throw new Error();
+//   }
+// }
+
+// Passing a value to resolve and accessing that value when calling that function using async await
+async function authenticate() {
+  try {
+    const message = await register();
+    await emailSend();
+    await login();
+    await getUserData();
+    await displayData();
+    console.log(message);
+  } catch (err) {
+    console.log(err);
+    throw new Error();
+  }
+}
+// Here we are passing new fnction inside authenticate function using .then
+authenticate()
+  .then(() => {
+    console.log("All Done");
+  })
   .catch((err) => {
-    console.log("error: ", err);
+    console.log(err);
   });
 console.log("Application Loaded");
