@@ -14,3 +14,5 @@ function BankAccount(customerName, balance) {
 }
 const tanveerAccount = new BankAccount("Tanveer", 1000);
 console.log(tanveerAccount);
+
+console.log(tanveerAccount.customerName); // to access the properties of an object we use dot notation
